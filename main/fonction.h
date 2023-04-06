@@ -14,6 +14,11 @@
 #define PIN_TRIGGER_ULTRASONIC_SENSOR_2 33  // Broche Trigger du HC-SR04 sur D8 //
 
 
+// Bluetooth
+void getCommand(String& S_feature, String& S_value);
+boolean sendCommand(String message);
+
+
 // Fonction des capteurs ultrason
 int AvancerReculer(int, int, int, int);
 int read_Ultrasonic_Sensor_1();

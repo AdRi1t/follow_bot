@@ -1,4 +1,5 @@
 #include <SendOnlySoftwareSerial.h>
+#include <SoftwareSerial.h>  //Autorise les comunication serial sur des digital pin
 #include <Servo.h>
 #include "HX711.h"
 #include "fonction.h"
@@ -33,6 +34,9 @@ unsigned long t_1;
 
 SendOnlySoftwareSerial Serial4(txPin);  // Tx pin
 
+// Bluetooth
+SoftwareSerial bluetoothSerial = SoftwareSerial(10, 11);  // (rxPin, txPin)
+
 // Buzzer
 const int irPin = A0;     // Initialise le broche du capteur infrarouge à A0
 const int buzzerPin = 4;  // Initialise le broche du buzzer à 4
@@ -48,7 +52,7 @@ HX711 scale_C;
 // Coffre
 Servo myservo;
 char Incoming_value = 0;
-const int RELAY_4_PIN = 5;
+const int magnet_pin = 13;
 const int servo_pin = 9;
 
 void setup() {
@@ -56,6 +60,7 @@ void setup() {
   digitalWrite(RST, 1);
   Serial.begin(9600);
   Serial4.begin(9600);
+  bluetoothSerial.begin(9600);
 
   sortie0 = 0;
   sortie1 = 0;
@@ -95,6 +100,7 @@ void setup() {
   scale_A.begin(3, 2);
   scale_B.begin(5, 4);
   scale_C.begin(9, 8);
+
   // Calibration
   scale_A.set_scale(114.f);
   scale_B.set_scale(114.f);
@@ -105,7 +111,7 @@ void setup() {
 
   // Coffre
   myservo.attach(servo_pin);  // Attache le servo sur au pin 9
-  pinMode(RELAY_4_PIN, OUTPUT);
+  pinMode(magnet_pin, OUTPUT);
 }
 
 
@@ -130,8 +136,6 @@ void loop() {
 
   asservissement();
 
-  read_weight_bagage();
-  check_buzzer();
 
   delay(100);
 }
