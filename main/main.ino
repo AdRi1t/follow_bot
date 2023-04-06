@@ -139,7 +139,10 @@ void loop() {
   AvancerReculer(InDistanceUltrasonicSensor1, InDistanceUltrasonicSensor2, InPreviousDistanceUltrasonicSensor1, InPreviousDistanceUltrasonicSensor2);
 
   asservissement();
+  
+  LCD_write_stats();
+  read_weight_bagage();
+  check_buzzer();
 
-
-  delay(100);
+  delay(25);
 }
