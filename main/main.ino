@@ -49,6 +49,10 @@ HX711 scale_A;
 HX711 scale_B;
 HX711 scale_C;
 
+int pin_scale_A[2]={3,2};
+int pin_scale_B[2]={5,4};
+int pin_scale_C[2]={9,8};
+
 // Coffre
 Servo myservo;
 char Incoming_value = 0;
@@ -97,9 +101,9 @@ void setup() {
   LCD.begin(16, 2);  // définit le type d'écran lcd 16 x 2
 
   /*  Initialisation de la partie balance   */
-  scale_A.begin(3, 2);
-  scale_B.begin(5, 4);
-  scale_C.begin(9, 8);
+  scale_A.begin(pin_scale_A[0],pin_scale_A[1]);
+  scale_B.begin(pin_scale_B[0],pin_scale_B[1]);
+  scale_C.begin(pin_scale_C[0],pin_scale_C[1]);
 
   // Calibration
   scale_A.set_scale(114.f);

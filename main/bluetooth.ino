@@ -10,11 +10,24 @@ boolean sendCommand(String message) {
   }
 }
 
+void getCommand(String& S_message) {
+  while (bluetoothSerial.available()) {
+    char c = (char)bluetoothSerial.read();
+    if(c == '\0' || c == '\n') {
+      return;
+    }
+    S_message += c ;
+  }
+}
+
+
 /*
  * Fonction utilisée pour extraire la fonction et la valeur
  * reçut en commande lors de la communication bluetooth
  * de la forme "feature:value;".
  */
+
+/*
 void getCommand(String& S_feature, String& S_value) {
   while (bluetoothSerial.available()) {
     char c = (char)bluetoothSerial.read();
@@ -32,3 +45,5 @@ void getCommand(String& S_feature, String& S_value) {
     }
   }
 }
+
+*/
