@@ -22,7 +22,7 @@ void getCommand(String& S_feature, String& S_value) {
     if (c == ':') {
       phase = 1;
     } else if (c == ';' || c == '\0' || c == '\n') {
-      return 0;
+      return ;
     } else {
       if (phase == 0) {
         S_feature += c;
