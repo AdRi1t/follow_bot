@@ -3,6 +3,32 @@
 #include "fonction.h"
 
 
+void init_moteurs(){
+  sortie0 = 0;
+  sortie1 = 0;
+  sortie2 = 0;
+  sortie3 = 0;
+
+  consigne_vitesse[0] = 0;
+  consigne_vitesse[1] = 0;
+  consigne_vitesse[2] = 0;
+  consigne_vitesse[3] = 0;
+
+  delay(4000);
+
+  Serial4.write(170);
+  delay(1);
+
+  output(sortie0, 0);
+  delay(1);
+  output(sortie2, 2);
+  delay(1);
+  output(sortie1, 1);
+  delay(1);
+  output(sortie3, 3);
+
+}
+
 void asservissement() {
   int n = 0;
   for (int n = 0; n < 4; n++) {

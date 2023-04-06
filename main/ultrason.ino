@@ -1,6 +1,15 @@
 #include <SendOnlySoftwareSerial.h>
 #include "fonction.h"
 
+void init_capteurs(){
+ 
+  pinMode(PIN_TRIGGER_ULTRASONIC_SENSOR_1, OUTPUT);  // Broche Trigger en sortie //
+  pinMode(PIN_ECHO_ULTRASONIC_SENSOR_1, INPUT);      // Broche Echo en entree //
+
+  pinMode(PIN_TRIGGER_ULTRASONIC_SENSOR_2, OUTPUT);  // Broche Trigger en sortie //
+  pinMode(PIN_ECHO_ULTRASONIC_SENSOR_2, INPUT);  
+}
+
 int AvancerReculer(int InDistanceUltrasonicSensor1, int InDistanceUltrasonicSensor2, int InPreviousDistanceUltrasonicSensor1, int InPreviousDistanceUltrasonicSensor2) {
   if (InDistanceUltrasonicSensor1 > 40 && InDistanceUltrasonicSensor2 > 40)  //Avancer
   {

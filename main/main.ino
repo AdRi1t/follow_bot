@@ -48,7 +48,6 @@ LiquidCrystal LCD(13, 12, 11, 10, 9, 8);
 HX711 scale_A;
 HX711 scale_B;
 HX711 scale_C;
-
 int pin_scale_A[2]={3,2};
 int pin_scale_B[2]={5,4};
 int pin_scale_C[2]={9,8};
@@ -66,28 +65,6 @@ void setup() {
   Serial4.begin(9600);
   bluetoothSerial.begin(9600);
 
-  sortie0 = 0;
-  sortie1 = 0;
-  sortie2 = 0;
-  sortie3 = 0;
-
-  consigne_vitesse[0] = 0;
-  consigne_vitesse[1] = 0;
-  consigne_vitesse[2] = 0;
-  consigne_vitesse[3] = 0;
-
-  delay(4000);
-
-  Serial4.write(170);
-  delay(1);
-
-  output(sortie0, 0);
-  delay(1);
-  output(sortie2, 2);
-  delay(1);
-  output(sortie1, 1);
-  delay(1);
-  output(sortie3, 3);
 
   t_0 = millis();
 
@@ -99,19 +76,6 @@ void setup() {
 
   // LCD
   LCD.begin(16, 2);  // définit le type d'écran lcd 16 x 2
-
-  /*  Initialisation de la partie balance   */
-  scale_A.begin(pin_scale_A[0],pin_scale_A[1]);
-  scale_B.begin(pin_scale_B[0],pin_scale_B[1]);
-  scale_C.begin(pin_scale_C[0],pin_scale_C[1]);
-
-  // Calibration
-  scale_A.set_scale(114.f);
-  scale_B.set_scale(114.f);
-  scale_C.set_scale(114.f);
-  scale_A.tare();
-  scale_B.tare();
-  scale_C.tare();
 
   // Coffre
   myservo.attach(servo_pin);  // Attache le servo sur au pin 9

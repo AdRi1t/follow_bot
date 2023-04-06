@@ -18,13 +18,13 @@
 void getCommand(String& S_feature, String& S_value);
 boolean sendCommand(String message);
 
-
 // Fonction des capteurs ultrason
 int AvancerReculer(int, int, int, int);
 int read_Ultrasonic_Sensor_1();
 int read_Ultrasonic_Sensor_2();
 
 // Fonction pour les moteurs
+void init_motor();
 void asservissement();
 int readHCTL_n(int);
 int inputHCTL();
