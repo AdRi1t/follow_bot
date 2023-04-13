@@ -96,7 +96,6 @@ int read_Ultrasonic_Sensor_1() {
   return (InDistanceSensorUltrasonic1);
 }
 
-
 int read_Ultrasonic_Sensor_2() {
   long InAcquisitionTimeUltrasonicSensor2;
   long InDistanceUltrasonicSensor2;

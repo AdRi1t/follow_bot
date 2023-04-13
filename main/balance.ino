@@ -1,4 +1,4 @@
-#include "HX711.h"
+#include <../HX711_Arduino_Library/src/HX711.h>
 #include "fonction.h"
 
 /* Initialise les pins de balance */

@@ -45,5 +45,4 @@ void getCommand(String& S_feature, String& S_value) {
     }
   }
 }
-
 */

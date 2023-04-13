@@ -1,6 +1,7 @@
 #include <Servo.h>
 #include "fonction.h"
 
+
 void open_box() {
   digitalWrite(magnet_pin, LOW);
   for (int pos = 0; pos <= 90; pos += 1) {  // Va de 0 degrés à 90 degrés par pas de 1 degré

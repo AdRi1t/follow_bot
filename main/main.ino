@@ -1,7 +1,7 @@
 #include <SendOnlySoftwareSerial.h>
 #include <SoftwareSerial.h>  //Autorise les comunication serial sur des digital pin
 #include <Servo.h>
-#include "HX711.h"
+#include <../HX711_Arduino_Library/src/HX711.h>
 #include "fonction.h"
 #include "LiquidCrystal.h"
 
@@ -48,9 +48,9 @@ LiquidCrystal LCD(13, 12, 11, 10, 9, 8);
 HX711 scale_A;
 HX711 scale_B;
 HX711 scale_C;
-int pin_scale_A[2]={3,2};
-int pin_scale_B[2]={5,4};
-int pin_scale_C[2]={9,8};
+int pin_scale_A[2] = { 3, 2 };
+int pin_scale_B[2] = { 5, 4 };
+int pin_scale_C[2] = { 9, 8 };
 
 // Coffre
 Servo myservo;
@@ -84,6 +84,8 @@ void setup() {
 
 
 void loop() {
+  String S_message;
+  int poids = 0;
   long InDistanceUltrasonicSensor1;
   long InDistanceUltrasonicSensor2;
   long InPreviousDistanceUltrasonicSensor1;
@@ -101,11 +103,21 @@ void loop() {
   InDistanceUltrasonicSensor2 = read_Ultrasonic_Sensor_2();
 
   AvancerReculer(InDistanceUltrasonicSensor1, InDistanceUltrasonicSensor2, InPreviousDistanceUltrasonicSensor1, InPreviousDistanceUltrasonicSensor2);
-
   asservissement();
-  
+
+  getCommand(S_message);
+
+  if (S_message == String("ouvre")) {
+    open_box();
+  } else if (S_message == String("ferme")) {
+    close_box();
+  }
+
+  poids = read_weight_bagage();
+  sendCommand(String(poids));
+
   LCD_write_stats();
-  read_weight_bagage();
+
   check_buzzer();
 
   delay(25);

@@ -1,5 +1,4 @@
 #include <SendOnlySoftwareSerial.h>
-#include "HX711.h"
 #include "fonction.h"
 
 
