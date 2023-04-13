@@ -80,6 +80,8 @@ void setup() {
   // Coffre
   myservo.attach(servo_pin);  // Attache le servo sur au pin 9
   pinMode(magnet_pin, OUTPUT);
+
+  int etat = 0;
 }
 
 
@@ -106,11 +108,26 @@ void loop() {
   asservissement();
 
   getCommand(S_message);
+  
+  if (etat == 0) {
+    if (S_message == String("ouvre")) {
+      open_box();
+    } else if (S_message == String("ferme")) {
+      close_box();
+    }
+    if (S_message == String("follow")) {
+      etat = 1;
+    } else if (S_message == String("guide")) {
+      etat = 2;
+    }
+  } else if (etat == 1) {
 
-  if (S_message == String("ouvre")) {
-    open_box();
-  } else if (S_message == String("ferme")) {
-    close_box();
+    //TO-DO follow
+
+  } else if (etat == 2) {
+
+    //TO-DO guide
+
   }
 
   poids = read_weight_bagage();
