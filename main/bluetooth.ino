@@ -1,6 +1,7 @@
 #include <string.h>
 #include "fonction.h"
 
+// Envoie un message par le module Bluetooth.
 boolean sendCommand(String message) {
   if (bluetoothSerial.available()) {
     bluetoothSerial.println(message);
@@ -10,6 +11,7 @@ boolean sendCommand(String message) {
   }
 }
 
+// Reçoit un message complet caractère par caractère
 void getCommand(String& S_message) {
   while (bluetoothSerial.available()) {
     char c = (char)bluetoothSerial.read();

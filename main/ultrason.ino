@@ -90,7 +90,7 @@ int read_Ultrasonic_Sensor_1() {
   // On mesure combien de temps le niveau logique haut est actif sur ECHO //
   InSignalTimeSensorUltrasonic1 = pulseIn(PIN_ECHO_ULTRASONIC_SENSOR_1, HIGH);
   // Calcul de la distance grace au temps mesure //
-  InDistanceSensorUltrasonic1 = InSignalTimeSensorUltrasonic1 * 0.034 / 2;  // *** voir explications apres l'exemple de code *** //
+  InDistanceSensorUltrasonic1 = InSignalTimeSensorUltrasonic1 * 0.034 / 2;  
   // Verification si valeur mesuree dans la plage //
 
   return (InDistanceSensorUltrasonic1);
@@ -109,7 +109,7 @@ int read_Ultrasonic_Sensor_2() {
   // On mesure combien de temps le niveau logique haut est actif sur ECHO //
   InAcquisitionTimeUltrasonicSensor2 = pulseIn(PIN_ECHO_ULTRASONIC_SENSOR_2, HIGH);
   // Calcul de la distance grace au temps mesure //
-  InDistanceUltrasonicSensor2 = InAcquisitionTimeUltrasonicSensor2 * 0.034 / 2;  // *** voir explications apres l'exemple de code *** //
+  InDistanceUltrasonicSensor2 = InAcquisitionTimeUltrasonicSensor2 * 0.034 / 2;
   // Verification si valeur mesuree dans la plage //
 
   return (InDistanceUltrasonicSensor2);

@@ -1,7 +1,7 @@
 #include <SendOnlySoftwareSerial.h>
 #include "fonction.h"
 
-
+// Initialise les moteurs
 void init_moteurs(){
   sortie0 = 0;
   sortie1 = 0;
