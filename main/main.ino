@@ -1,7 +1,7 @@
 #include <SendOnlySoftwareSerial.h>
 #include <SoftwareSerial.h>  //Autorise les comunication serial sur des digital pin
 #include <Servo.h>
-#include <../HX711_Arduino_Library/src/HX711.h>
+#include "HX711.h"
 #include "fonction.h"
 #include "LiquidCrystal.h"
 
@@ -42,7 +42,8 @@ const int irPin = A0;     // Initialise le broche du capteur infrarouge à A0
 const int buzzerPin = 4;  // Initialise le broche du buzzer à 4
 
 // LCD
-LiquidCrystal LCD(13, 12, 11, 10, 9, 8);
+const int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6, d7 = 7; // Déclaration LCD
+LiquidCrystal LCD(rs, en, d4, d5, d6, d7); 
 
 // Balance
 HX711 scale_A;
@@ -88,6 +89,7 @@ void setup() {
 void loop() {
   String S_message;
   int poids = 0;
+  int etat = 0;
   long InDistanceUltrasonicSensor1;
   long InDistanceUltrasonicSensor2;
   long InPreviousDistanceUltrasonicSensor1;

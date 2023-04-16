@@ -18,6 +18,8 @@ void init_balance(){
   scale_C.tare();
 }
 
+
+
 /*  Retourne le poids en gramme */
 int read_weight_bagage() {
   int read_value = 0;

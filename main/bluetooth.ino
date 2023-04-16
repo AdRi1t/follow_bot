@@ -26,7 +26,6 @@ void getCommand(String& S_message) {
  * reçut en commande lors de la communication bluetooth
  * de la forme "feature:value;".
  */
-
 /*
 void getCommand(String& S_feature, String& S_value) {
   while (bluetoothSerial.available()) {
