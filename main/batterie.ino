@@ -9,7 +9,6 @@ void LCD_write_stats() {
   int restant;
   valeurA0 = analogRead(A0);          //définie la broche mesurant la tension
   tension = (valeurA0 * 5.0) / 1023;  //calcule la tension réelle
-  //float p_bat = map(tension,5.1,3.9,0,100); //calcul du pourcentage de batterie en utilisant une formule linéaire
   tension2 = (tension * (37000)) / 15000;
 
   if (tension >= 4.995) {
@@ -32,23 +31,32 @@ void LCD_write_stats() {
   }
   else if (tension >= 4.365) {
     restant = 40;
-  } 
+  }
   else if (tension >= 4.26) {
     restant = 30;
   }
-  else if (tension >= 4, 155) {
+  else if (tension >= 4.155) {
     restant = 20;
-  } 
-  else if (tension >= 4, 05) {
+  }
+  else if (tension >= 4.05) {
     restant = 10;
   }
 
-  LCD.setCursor(1, 0);
-  LCD.print("autonomie=");
-  LCD.print(restant);
-  LCD.print("%");
-  LCD.setCursor(0, 1);
-  LCD.print("tension =");
-  LCD.print(tension2);
-  LCD.print("V");
+   // Affichage des carrés en fonction de l'autonomie restante
+  lcd.setCursor(0, 0);
+  lcd.print(restant);
+  lcd.print("% ");
+  for (int i = 1; i <= 10; i++) {
+    if (restant / 10 >= i) {
+      lcd.write(byte(0)); // Affichage du symbole personnalisé pour le carré
+    }
+    else {
+      lcd.print(" ");
+    }
+  }
+
+  lcd.setCursor(0, 1);
+  lcd.print("Tension :");
+  lcd.print(tension2);
+  lcd.print("V");
 }

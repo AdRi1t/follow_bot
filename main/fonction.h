@@ -39,6 +39,16 @@ int read_weight_bagage();
 
 // Fonction pour le niveau de batterie
 void LCD_write_stats();
+byte battery[] = {
+  B00000,
+  B01110,
+  B11111,
+  B11111,
+  B11111,
+  B11111,
+  B01110,
+  B00000
+};
 
 // Fonction du coffre
 void open_box();

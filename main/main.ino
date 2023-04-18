@@ -5,6 +5,7 @@
 #include "fonction.h"
 #include "LiquidCrystal.h"
 
+// Moteurs
 //const int freqOutputPin = 13;   // OC1A output pin for ATmega32u4 (Arduino Nano)
 const int SEL = 10;
 const int OEB_0 = 2;
@@ -43,7 +44,7 @@ const int buzzerPin = 4;  // Initialise le broche du buzzer à 4
 
 // LCD
 const int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6, d7 = 7; // Déclaration LCD
-LiquidCrystal LCD(rs, en, d4, d5, d6, d7); 
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7); 
 
 // Balance
 HX711 scale_A;
@@ -58,6 +59,8 @@ Servo myservo;
 char Incoming_value = 0;
 const int magnet_pin = 13;
 const int servo_pin = 9;
+
+int etat = 0;
 
 void setup() {
   /* Initialisation port Série */
@@ -76,20 +79,19 @@ void setup() {
   pinMode(PIN_ECHO_ULTRASONIC_SENSOR_2, INPUT);      // Broche Echo en entree //
 
   // LCD
-  LCD.begin(16, 2);  // définit le type d'écran lcd 16 x 2
+  lcd.begin(16, 2);  // définit le type d'écran lcd 16 x 2
+  lcd.createChar(0, battery);   // Chargement des symboles personnalisé
 
   // Coffre
   myservo.attach(servo_pin);  // Attache le servo sur au pin 9
   pinMode(magnet_pin, OUTPUT);
 
-  int etat = 0;
 }
 
 
 void loop() {
   String S_message;
   int poids = 0;
-  int etat = 0;
   long InDistanceUltrasonicSensor1;
   long InDistanceUltrasonicSensor2;
   long InPreviousDistanceUltrasonicSensor1;
@@ -124,11 +126,7 @@ void loop() {
     }
   } else if (etat == 1) {
 
-    //TO-DO follow
-
   } else if (etat == 2) {
-
-    //TO-DO guide
 
   }
 
